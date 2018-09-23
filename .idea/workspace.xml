@@ -12,7 +12,7 @@
     <session id="-632410142">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.47" value="1" />
@@ -41,7 +41,7 @@
         <counts>
           <entry key="Notes" value="845" />
           <entry key="json" value="118" />
-          <entry key="py" value="29340" />
+          <entry key="py" value="29373" />
           <entry key="simpleRangedWeapons" value="27" />
         </counts>
       </usages-collector>
@@ -49,14 +49,14 @@
         <counts>
           <entry key="JSON" value="118" />
           <entry key="PLAIN_TEXT" value="872" />
-          <entry key="Python" value="29340" />
+          <entry key="Python" value="29373" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/Char.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -110,28 +110,28 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venv/Swapping Pages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="579" column="9" selection-start-line="579" selection-start-column="9" selection-end-line="579" selection-end-column="9" />
+            <state relative-caret-position="116">
+              <caret line="601" lean-forward="true" selection-start-line="601" selection-end-line="601" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
-                <marker date="1537689318404" expanded="true" signature="261:347" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="261:352" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="2366:2367" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="2366:2371" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="2525:2530" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="2525:2608" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="3028:3032" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="3058:3063" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="4179:4424" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="4451:10070" ph="..." />
-                <marker date="1537689318404" expanded="false" signature="10138:10147" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="22551:24184" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="22572:24184" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="24433:24439" ph="..." />
-                <marker date="1537689318404" expanded="true" signature="25932:25939" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="261:347" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="261:352" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="2366:2367" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="2366:2371" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="2525:2530" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="2525:2608" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="3028:3032" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="3058:3063" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="4179:4424" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="4451:10070" ph="..." />
+                <marker date="1537740336307" expanded="false" signature="10138:10147" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="22551:24209" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="22572:24209" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="24458:24464" ph="..." />
+                <marker date="1537740336307" expanded="true" signature="25957:25964" ph="..." />
               </folding>
             </state>
           </provider>
@@ -173,6 +173,9 @@
       <dir>C:\Users\nye42\PycharmProjects\dnd\dnd-spells-master</dir>
     </dirStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -198,11 +201,12 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="width" value="981" />
     <option name="height" value="1032" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -421,15 +425,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.033386327" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13831478" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3113879" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3113879" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3985765" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -562,13 +565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Testing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Init_lists.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102">
@@ -579,37 +575,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Swapping Pages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="579" column="9" selection-start-line="579" selection-start-column="9" selection-end-line="579" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <marker date="1537689318404" expanded="true" signature="261:347" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="261:352" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="2366:2367" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="2366:2371" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="2525:2530" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="2525:2608" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="3028:3032" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="3058:3063" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="4179:4424" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="4451:10070" ph="..." />
-            <marker date="1537689318404" expanded="false" signature="10138:10147" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="22551:24184" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="22572:24184" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="24433:24439" ph="..." />
-            <marker date="1537689318404" expanded="true" signature="25932:25939" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Char.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
           <folding>
             <marker date="1537609016976" expanded="true" signature="349:352" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Testing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Swapping Pages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="601" lean-forward="true" selection-start-line="601" selection-end-line="601" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <marker date="1537740336307" expanded="true" signature="261:347" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="261:352" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="2366:2367" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="2366:2371" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="2525:2530" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="2525:2608" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="3028:3032" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="3058:3063" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="4179:4424" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="4451:10070" ph="..." />
+            <marker date="1537740336307" expanded="false" signature="10138:10147" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="22551:24209" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="22572:24209" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="24458:24464" ph="..." />
+            <marker date="1537740336307" expanded="true" signature="25957:25964" ph="..." />
           </folding>
         </state>
       </provider>

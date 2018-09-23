@@ -577,7 +577,10 @@ class Page_Two(tk.Frame):
         lvlup_desc.grid(row=3, column=0)
         lvlup_desc.insert(tk.INSERT, str(lists.level_up_descp[int(level) - 1][self.class_switch(cls)]))
 
-        #if(level == 4 || )
+        #if need to have a
+
+        if(level == 4):
+
 
 
 
