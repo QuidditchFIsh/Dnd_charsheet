@@ -6,67 +6,57 @@ import json
 import Char as char
 import Init_lists as lists
 
+LARGE_FONT = ("Verdana", 12)
 
-LARGE_FONT = ("Verdana",12)
 
-#Can put inheritance into these parathemcies
+# Can put inheritance into these parathemcies
 class dnd_char_Sheet(tk.Tk):
-#init method is initalisation class. When the class runs this will imidately will run
+    # init method is initalisation class. When the class runs this will imidately will run
     def __init__(self):
-        #initalise tkinter as well
+        # initalise tkinter as well
         tk.Tk.__init__(self)
         self.container = tk.Frame(self)
 
-        self.container.pack(side='top', fill='both',expand=True)
 
-        self.container.grid_rowconfigure(0,weight=1)
-        self.container.grid_columnconfigure(0,weight=1)
+        #self.container.pack(side='top', fill='both', expand=True)
+        self.container.grid(row=0,column=0)
+
+        self.container.grid_rowconfigure(0, weight=1)
+        self.container.grid_columnconfigure(0, weight=1)
 
         self.menubar = tk.Menu(self.container)
-        self.filemenu = tk.Menu(self.menubar,tearoff=0)
+        self.filemenu = tk.Menu(self.menubar, tearoff=0)
         self.filemenu.add_command(label="Save Settings")
         self.filemenu.add_separator()
-        self.filemenu.add_command(label="Exit",command=quit)
+        self.filemenu.add_command(label="Exit", command=quit)
 
-
-        self.char_menu = tk.Menu(self.menubar,tearoff=0)
-        self.char_menu.add_command(label="Edit Hit Points")
-
-
-
-        self.spell_menu = tk.Menu(self.menubar,tearoff=0)
-        self.lvl_menu = tk.Menu(self.spell_menu,tearoff=0)
+        self.spell_menu = tk.Menu(self.menubar, tearoff=0)
+        self.lvl_menu = tk.Menu(self.spell_menu, tearoff=0)
         self.class_menu = tk.Menu(self.spell_menu, tearoff=0)
 
-        for i in range(0,8):
+        for i in range(0, 8):
             self.lvl_menu.add_command(label=i)
 
-
-        for i in ['Ranger', 'Barbarian', 'Paladin','Bard','Cleric','Druid','Fighter','Monk','Rouge','Sorcerer','Warlock','Wizard']:
+        for i in ['Ranger', 'Barbarian', 'Paladin', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Rouge', 'Sorcerer',
+                  'Warlock', 'Wizard']:
             self.class_menu.add_command(label=i)
 
-
         self.class_menu.add_command(label="hello")
-        self.spell_menu.add_cascade(label="By Level",menu=self.lvl_menu)
-        self.spell_menu.add_cascade(label="By Class",menu=self.class_menu)
+        self.spell_menu.add_cascade(label="By Level", menu=self.lvl_menu)
+        self.spell_menu.add_cascade(label="By Class", menu=self.class_menu)
 
-        self.menubar.add_cascade(label="File",menu=self.filemenu)
+        self.menubar.add_cascade(label="File", menu=self.filemenu)
         self.menubar.add_cascade(label="Edit")
-        self.menubar.add_cascade(label="Character",menu=self.char_menu)
-        self.menubar.add_cascade(label="Spells",menu=self.spell_menu)
+        self.menubar.add_cascade(label="Spells", menu=self.spell_menu)
 
-        self.menubar.entryconfigure("Character",state="disabled")
-        self.menubar.entryconfigure("Spells",state="disabled")
+        self.menubar.entryconfigure("Spells", state="disabled")
 
-
-        tk.Tk.config(self,menu=self.menubar)
+        tk.Tk.config(self, menu=self.menubar)
 
         self.frames = {}
 
-        for F in (StartPage,Page_One):
+        for F in (StartPage, Page_One):
             self.init_frames(F)
-
-
 
         self.show_frame(StartPage)
 
@@ -74,155 +64,254 @@ class dnd_char_Sheet(tk.Tk):
         frame = self.frames[page]
         frame.tkraise()
 
-    def init_frames(self,page):
+    def init_frames(self, page):
         frame = page(self.container, self)
         self.frames[page] = frame
         frame.grid(row=0, column=0, sticky="nsew")
 
-    def show_page(self,page):
+    def show_page(self, page):
         frame = page(self.container, self)
         self.frames[page] = frame
 
     def show_char_sheet(self):
         self.init_frames(Page_Two)
         self.show_frame(Page_Two)
-        self.spell_menu.add_command(label="Spells", command=lambda :self.show_page(Spell_Page))
-        #self.char_menu.add_command(label="Level Up",command = lambda :self.show_page(level_up_page))
-        self.menubar.entryconfigure("Character",state="normal")
+        self.spell_menu.add_command(label="Spells", command=lambda: self.show_page(Spell_Page))
+        # self.char_menu.add_command(label="Level Up",command = lambda :self.show_page(level_up_page))
+        #self.menubar.entryconfigure("Character", state="normal")
         self.menubar.entryconfigure("Spells", state="normal")
 
 
-
-
 class StartPage(tk.Frame):
-    def __init__(self,parent,controller):
-        tk.Frame.__init__(self,parent)
-        label = tk.Label(self,text="DnD Character Sheet and Database",font=LARGE_FONT)
-        label.grid(padx=10,pady=10,row=0,column=2)
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="DnD Character Sheet and Database", font=LARGE_FONT)
+        label.grid(padx=10, pady=10, row=0, column=2)
 
-        Button1 = ttk.Button(self,text="New Char Sheet",command=lambda :controller.show_frame(Page_One))
-        Button1.grid(padx=10,pady=10,row=1,column=2)
+        Button1 = ttk.Button(self, text="New Char Sheet", command=lambda: controller.show_frame(Page_One))
+        Button1.grid(padx=10, pady=10, row=1, column=2)
 
-        Button2 = ttk.Button(self,text="Load Char Sheet",command=lambda :controller.show_page(test_page))
-        Button2.grid(padx=10,pady=10,row=2,column=2)
+        Button2 = ttk.Button(self, text="Load Char Sheet", command=lambda: controller.show_page(test_page))
+        Button2.grid(padx=10, pady=10, row=2, column=2)
 
-        Button3 = ttk.Button(self,text="Weapons DataBase",command=lambda :controller.show_page(Weapons_Page))
-        Button3.grid(padx=10,pady=10,row=3,column=2)
+        Button3 = ttk.Button(self, text="Weapons DataBase", command=lambda: controller.show_page(Weapons_Page))
+        Button3.grid(padx=10, pady=10, row=3, column=2)
 
-        Button5 = ttk.Button(self, text="Spells DataBase",command=lambda :controller.show_page(Spell_Page))
-        Button5.grid(padx=10, pady=10,row=4,column=2)
+        Button5 = ttk.Button(self, text="Spells DataBase", command=lambda: controller.show_page(Spell_Page))
+        Button5.grid(padx=10, pady=10, row=4, column=2)
 
-        Button4 = ttk.Button(self,text="Dice",command=lambda :controller.show_page(Dice_Page))
-        Button4.grid(padx=10,pady=10,row=5,column=2)
+        Button4 = ttk.Button(self, text="Dice", command=lambda: controller.show_page(Dice_Page))
+        Button4.grid(padx=10, pady=10, row=5, column=2)
 
     def load(self):
         print("Need to implement loading a charsheet")
 
+
 class Weapons_Page(tk.Frame):
-    def __init__(self,parent,controller):
-        tk.Frame.__init__(self,parent)
-        win=tk.Toplevel()
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        win = tk.Toplevel()
+
 
 class Dice_Page(tk.Frame):
-    def __init__(self,parent,controller):
-        tk.Frame.__init__(self,parent)
-        win=tk.Toplevel()
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        die_win = tk.Toplevel()
+
+        title = tk.Label(die_win,text="Dice Roller")
+        title.grid(row=0,column=0,columnspan=2,padx=10,pady=10)
+
+        title_number = tk.Label(die_win,text="Number")
+        title_number.grid(row=0,column=2)
+
+        title_result = tk.Label(die_win,text="Result")
+        title_result.grid(row=0,column=4)
+
+        d4 = tk.Label(die_win, text="d4")
+        d4.grid(row=1, column=1)
+        self.d4_number = tk.Entry(die_win, width=5)
+        self.d4_number.insert(0, '0')
+        self.d4_number.grid(row=1, column=2, pady=10)
+        self.d4_result = tk.Entry(die_win, width=5)
+        self.d4_result.grid(row=1, column=4, padx=10)
+        d4_roll = tk.Button(die_win, text="Roll",
+                            command=lambda: Dice_Page.roll(self, 4, self.d4_result, self.d4_number.get()))
+        d4_roll.grid(row=1, column=3, padx=10)
+
+        d6 = tk.Label(die_win, text="d6")
+        d6.grid(row=2, column=1)
+        self.d6_number = tk.Entry(die_win, width=5)
+        self.d6_number.insert(0, '0')
+        self.d6_number.grid(row=2, column=2, pady=10)
+        self.d6_result = tk.Entry(die_win, width=5)
+        self.d6_result.grid(row=2, column=4, padx=10)
+        d6_roll = tk.Button(die_win, text="Roll",
+                            command=lambda: Dice_Page.roll(self, 6, self.d6_result, self.d6_number.get()))
+        d6_roll.grid(row=2, column=3, padx=10)
+        
+        d8 = tk.Label(die_win, text="d8")
+        d8.grid(row=3, column=1)
+        self.d8_number = tk.Entry(die_win, width=5)
+        self.d8_number.insert(0, '0')
+        self.d8_number.grid(row=3, column=2, pady=10)
+        self.d8_result = tk.Entry(die_win, width=5)
+        self.d8_result.grid(row=3, column=4, padx=10)
+        d8_roll = tk.Button(die_win, text="Roll",
+                            command=lambda: Dice_Page.roll(self, 8, self.d8_result, self.d8_number.get()))
+        d8_roll.grid(row=3, column=3, padx=10)
+        
+        d10 = tk.Label(die_win, text="d10")
+        d10.grid(row=4, column=1)
+        self.d10_number = tk.Entry(die_win, width=5)
+        self.d10_number.insert(0, '0')
+        self.d10_number.grid(row=4, column=2, pady=10)
+        self.d10_result = tk.Entry(die_win, width=5)
+        self.d10_result.grid(row=4, column=4, padx=10)
+        d10_roll = tk.Button(die_win, text="Roll",
+                            command=lambda: Dice_Page.roll(self, 10, self.d10_result, self.d10_number.get()))
+        d10_roll.grid(row=4, column=3, padx=10)
+        
+        d12 = tk.Label(die_win, text="d12")
+        d12.grid(row=5, column=1)
+        self.d12_number = tk.Entry(die_win, width=5)
+        self.d12_number.insert(0, '0')
+        self.d12_number.grid(row=5, column=2, pady=10)
+        self.d12_result = tk.Entry(die_win, width=5)
+        self.d12_result.grid(row=5, column=4, padx=10)
+        d12_roll = tk.Button(die_win, text="Roll",
+                            command=lambda: Dice_Page.roll(self, 12, self.d12_result, self.d12_number.get()))
+        d12_roll.grid(row=5, column=3, padx=10)
+        
+        d20 = tk.Label(die_win, text="d20")
+        d20.grid(row=6, column=1)
+        self.d20_number = tk.Entry(die_win, width=5)
+        self.d20_number.insert(0, '0')
+        self.d20_number.grid(row=6, column=2, pady=10)
+        self.d20_result = tk.Entry(die_win, width=5)
+        self.d20_result.grid(row=6, column=4, padx=10)
+        d20_roll = tk.Button(die_win, text="Roll",
+                            command=lambda: Dice_Page.roll(self, 20, self.d20_result, self.d20_number.get()))
+        d20_roll.grid(row=6, column=3, padx=10)
+        
+        d100 = tk.Label(die_win, text="d100")
+        d100.grid(row=7, column=1)
+        self.d100_number = tk.Entry(die_win, width=5)
+        self.d100_number.insert(0, '0')
+        self.d100_number.grid(row=7, column=2, pady=10)
+        self.d100_result = tk.Entry(die_win, width=5)
+        self.d100_result.grid(row=7, column=4, padx=10)
+        d100_roll = tk.Button(die_win, text="Roll",
+                            command=lambda: Dice_Page.roll(self, 100, self.d100_result, self.d100_number.get()))
+        d100_roll.grid(row=7, column=3, padx=10)
+
+
+    def roll(self,dice,box,number):
+        box.delete(0, 'end')
+        try:
+            if int(number) > 0:
+                box.insert(0, rand.randint(1, dice))
+                if int(number) > 1:
+                    for i in range(0, int(number) - 1):
+                        box.insert(0, str(rand.randint(1, dice)) + ',')
+        except:
+            print('Enter a Valid Number of Dice Please')
 
 
 class Spell_Page(tk.Frame):
-    def __init__(self,parent,controller):
-        tk.Frame.__init__(self,parent)
-        win=tk.Toplevel()
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        win = tk.Toplevel()
         search_Box_Frame = tk.Frame(win)
         spell_List_Frame = tk.Frame(win)
-        spell_Description_Frame= tk.Frame(win)
+        spell_Description_Frame = tk.Frame(win)
 
-        self.spell_search_var=tk.StringVar()
-        self.spell_search_var.trace("w",self.update_spell_list)
+        self.spell_search_var = tk.StringVar()
+        self.spell_search_var.trace("w", self.update_spell_list)
         self.Search_Box = ttk.Entry(search_Box_Frame, textvariable=self.spell_search_var)
         self.spell_lbox = tk.Listbox(spell_List_Frame, width=20, height=30)
         self.Search_Label = tk.Label(search_Box_Frame, text='Enter Spell Name Here')
-        self.Search_Label.grid(row=0,column=0)
-        self.spell_lbox.bind("<Double-Button-1>",self.OnDouble_Spell)
+        self.Search_Label.grid(row=0, column=0)
+        self.spell_lbox.bind("<Double-Button-1>", self.OnDouble_Spell)
 
-        self.spell_lbox.grid(row=0,column=0)
-        self.Search_Box.grid(row=0,column=1)
+        self.spell_lbox.grid(row=0, column=0)
+        self.Search_Box.grid(row=0, column=1)
 
         self.name_var = tk.StringVar()
         self.name_var.set('')
-        spell_Name_label = tk.Label(spell_Description_Frame,text="Name")
-        spell_Name_label.grid(row=0,column=0)
+        spell_Name_label = tk.Label(spell_Description_Frame, text="Name")
+        spell_Name_label.grid(row=0, column=0)
 
-        spell_Name_Entry = ttk.Entry(spell_Description_Frame,textvariable=self.name_var)
-        spell_Name_Entry.grid(row=0,column=1)
+        spell_Name_Entry = ttk.Entry(spell_Description_Frame, textvariable=self.name_var)
+        spell_Name_Entry.grid(row=0, column=1)
 
-        spell_Description_label = tk.Label(spell_Description_Frame,text='Description')
-        spell_Description_label.grid(row=1,column=0,columnspan=2)
-        self.spell_Description_Box = tk.Text(spell_Description_Frame,width=20,height=10)
-        self.spell_Description_Box.grid(row=2,column=0,columnspan=2)
+        spell_Description_label = tk.Label(spell_Description_Frame, text='Description')
+        spell_Description_label.grid(row=1, column=0, columnspan=2)
+        self.spell_Description_Box = tk.Text(spell_Description_Frame, width=20, height=10)
+        self.spell_Description_Box.grid(row=2, column=0, columnspan=2)
         self.spell_Description_Box.config(wrap=tk.WORD)
 
-        spell_Materials_label = tk.Label(spell_Description_Frame,text='Materials')
-        spell_Materials_label.grid(row=8,column=0,columnspan=2)
-        self.spell_Materials_Box = tk.Text(spell_Description_Frame,width=20,height=10)
-        self.spell_Materials_Box.grid(row=9,column=0,columnspan=2)
+        spell_Materials_label = tk.Label(spell_Description_Frame, text='Materials')
+        spell_Materials_label.grid(row=8, column=0, columnspan=2)
+        self.spell_Materials_Box = tk.Text(spell_Description_Frame, width=20, height=10)
+        self.spell_Materials_Box.grid(row=9, column=0, columnspan=2)
         self.spell_Materials_Box.config(wrap=tk.WORD)
 
         self.range_var = tk.StringVar()
         self.range_var.set('')
-        spell_Range_label = tk.Label(spell_Description_Frame,text="Range")
-        spell_Range_label.grid(row=3,column=0)
+        spell_Range_label = tk.Label(spell_Description_Frame, text="Range")
+        spell_Range_label.grid(row=3, column=0)
 
-        spell_Range_Entry = ttk.Entry(spell_Description_Frame,textvariable=self.range_var)
-        spell_Range_Entry.grid(row=3,column=1)
+        spell_Range_Entry = ttk.Entry(spell_Description_Frame, textvariable=self.range_var)
+        spell_Range_Entry.grid(row=3, column=1)
 
-        spell_Duration_label = tk.Label(spell_Description_Frame,text="Duration")
-        spell_Duration_label.grid(row=4,column=0)
+        spell_Duration_label = tk.Label(spell_Description_Frame, text="Duration")
+        spell_Duration_label.grid(row=4, column=0)
 
-        self.duration_var=tk.StringVar()
+        self.duration_var = tk.StringVar()
         self.duration_var.set('')
-        spell_Duration_Entry = ttk.Entry(spell_Description_Frame,textvariable=self.duration_var)
-        spell_Duration_Entry.grid(row=4,column=1)
+        spell_Duration_Entry = ttk.Entry(spell_Description_Frame, textvariable=self.duration_var)
+        spell_Duration_Entry.grid(row=4, column=1)
 
-        spell_Level_label = tk.Label(spell_Description_Frame,text="Level")
-        spell_Level_label.grid(row=5,column=0)
+        spell_Level_label = tk.Label(spell_Description_Frame, text="Level")
+        spell_Level_label.grid(row=5, column=0)
 
-        self.lvl_var=tk.StringVar()
+        self.lvl_var = tk.StringVar()
         self.lvl_var.set('')
-        spell_Level_Entry = ttk.Entry(spell_Description_Frame,textvariable=self.lvl_var)
-        spell_Level_Entry.grid(row=5,column=1)
+        spell_Level_Entry = ttk.Entry(spell_Description_Frame, textvariable=self.lvl_var)
+        spell_Level_Entry.grid(row=5, column=1)
 
         self.concentration_var = tk.IntVar()
-        self.concentration_chk_box = tk.Checkbutton(spell_Description_Frame,text="Concentration",variable=self.concentration_var)
-        self.concentration_chk_box.grid(row=6,column=0,columnspan=2)
+        self.concentration_chk_box = tk.Checkbutton(spell_Description_Frame, text="Concentration",
+                                                    variable=self.concentration_var)
+        self.concentration_chk_box.grid(row=6, column=0, columnspan=2)
 
-        spell_Casting_label = tk.Label(spell_Description_Frame,text="Casting Time")
-        spell_Casting_label.grid(row=7,column=0)
+        spell_Casting_label = tk.Label(spell_Description_Frame, text="Casting Time")
+        spell_Casting_label.grid(row=7, column=0)
 
         self.casting_var = tk.StringVar()
         self.casting_var.set('')
-        spell_Casting_Entry = ttk.Entry(spell_Description_Frame,textvariable=self.casting_var)
-        spell_Casting_Entry.grid(row=7,column=1)
+        spell_Casting_Entry = ttk.Entry(spell_Description_Frame, textvariable=self.casting_var)
+        spell_Casting_Entry.grid(row=7, column=1)
 
-        search_Box_Frame.grid(row=0,column=0,columnspan=2,pady=10)
-        spell_List_Frame.grid(row=1,column=0,padx=10)
-        spell_Description_Frame.grid(row=1,column=1,padx=10)
+        search_Box_Frame.grid(row=0, column=0, columnspan=2, pady=10)
+        spell_List_Frame.grid(row=1, column=0, padx=10)
+        spell_Description_Frame.grid(row=1, column=1, padx=10)
 
         self.update_spell_list()
 
-    def update_spell_list(self,*args):
+    def update_spell_list(self, *args):
         search_term = self.spell_search_var.get()
 
-        with open("C:/Users/nye42/PycharmProjects/dnd/dnd-spells-master/spells.json", encoding='utf-8') as file:
+        with open(lists.Path_to_Spells, encoding='utf-8') as file:
             spell_data = json.load(file)
         self.spells = []
         self.desc = []
         self.range = []
-        self.duration=[]
-        self.lvl=[]
-        self.concentration=[]
-        self.casting=[]
-        self.materials=[]
+        self.duration = []
+        self.lvl = []
+        self.concentration = []
+        self.casting = []
+        self.materials = []
 
         for spell in spell_data['spells']:
             self.spells.append(spell['name'])
@@ -237,14 +326,13 @@ class Spell_Page(tk.Frame):
             except Exception:
                 self.materials.append('No Materials Required')
 
-
         self.spell_lbox.delete(0, tk.END)
 
         for item in self.spells:
-                if search_term.lower() in item.lower():
-                    self.spell_lbox.insert(tk.END, item)
+            if search_term.lower() in item.lower():
+                self.spell_lbox.insert(tk.END, item)
 
-    def OnDouble_Spell(self,event):
+    def OnDouble_Spell(self, event):
         widget = event.widget
         selection = widget.curselection()
         value = widget.get(selection[0])
@@ -254,37 +342,35 @@ class Spell_Page(tk.Frame):
         self.duration_var.set(self.duration[location])
         self.casting_var.set(self.casting[location])
         self.lvl_var.set(self.lvl[location])
-        self.spell_Description_Box.insert('1.0',self.desc[location])
-        self.spell_Materials_Box.insert('1.0',self.materials[location])
-        if(self.concentration[location] == 'yes'):
+        self.spell_Description_Box.insert('1.0', self.desc[location])
+        self.spell_Materials_Box.insert('1.0', self.materials[location])
+        if (self.concentration[location] == 'yes'):
             self.concentration_var.set('1')
         else:
             self.concentration_var.set('0')
 
 
-
 class Page_One(tk.Frame):
-
-    def __init__(self,parent,controller):
-        tk.Frame.__init__(self,parent)
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
         self.create_page(controller)
 
-    def create_page(self,controller):
-        label = ttk.Label(self,text="Enter The info About your Character",font=LARGE_FONT)
-        label.grid(row=0,column=0,columnspan=2,padx=30)
+    def create_page(self, controller):
+        label = ttk.Label(self, text="Enter The info About your Character", font=LARGE_FONT)
+        label.grid(row=0, column=0, columnspan=2, padx=30)
 
-        Label_Name = ttk.Label(self,text="Name")
-        Label_Name.grid(row=1,column=0)
+        Label_Name = ttk.Label(self, text="Name")
+        Label_Name.grid(row=1, column=0)
         self.Entry_Name = ttk.Entry(self)
-        self.Entry_Name.grid(row=1,column=1)
+        self.Entry_Name.grid(row=1, column=1)
 
-        Races = {'Half Elf','Gnome','Half Orc','DragonBorn','Tiefling','Dwarf'
-            , 'Elf','Halfling','Human'}
-        Alignments = {'Lawful Good', 'Neutral Good', 'Chaotic Good ','Lawful neutral','True neutral',
-                      'Chaotic neutral','Lawful evil','Neutral evil','Chaotic evil'}
-        Class = {'Ranger': 6, 'Barbarian': 8, 'Paladin': 6 ,'Bard': 5,'Cleric':5
-        , 'Druid':5,'Fighter':6,'Monk':5,'Rouge':5,'Sorcerer':4,
-                 'Warlock':5,'Wizard':4}
+        Races = {'Half Elf', 'Gnome', 'Half Orc', 'DragonBorn', 'Tiefling', 'Dwarf'
+            ,'Elf', 'Halfling', 'Human'}
+        Alignments = {'Lawful Good', 'Neutral Good', 'Chaotic Good ', 'Lawful neutral', 'True neutral',
+                      'Chaotic neutral', 'Lawful evil', 'Neutral evil', 'Chaotic evil'}
+        Class = {'Ranger': 6, 'Barbarian': 8, 'Paladin': 6, 'Bard': 5, 'Cleric': 5
+            , 'Druid': 5, 'Fighter': 6, 'Monk': 5, 'Rouge': 5, 'Sorcerer': 4,
+                 'Warlock': 5, 'Wizard': 4}
         self.tkvar_R = tk.StringVar()
         self.tkvar_A = tk.StringVar()
         self.tkvar_C = tk.StringVar()
@@ -293,26 +379,26 @@ class Page_One(tk.Frame):
         self.tkvar_A.set('')
         self.tkvar_C.set('')
 
-        #put a trace on te class variable to check when it changes
+        # put a trace on te class variable to check when it changes
 
-        Label_Class = tk.Label(self,text="Class")
-        Label_Class.grid(row=2,column=0)
+        Label_Class = tk.Label(self, text="Class")
+        Label_Class.grid(row=2, column=0)
         Class_Menu = ttk.OptionMenu(self, self.tkvar_C, *Class)
-        Class_Menu.grid(row=2,column=1)
-        #self.img=ImageTk.PhotoImage(Image.open("C:/Users/nye42/PycharmProjects/dnd/Class_icons/Ranger.jpg"))
-        #Label_Class_Img = ttk.Label(self,image = self.img)
-        #Label_Class_Img.image = self.img
-        #Label_Class_Img.grid(row=2,column=2)
+        Class_Menu.grid(row=2, column=1)
+        self.img=ImageTk.PhotoImage(Image.open("C:/Users/Nye/PycharmProjects/Dnd_charsheet/Class_icons/Ranger.jpg"))
+        Label_Class_Img = ttk.Label(self,image = self.img)
+        Label_Class_Img.image = self.img
+        Label_Class_Img.grid(row=2,column=2)
 
-        Label_Race = tk.Label(self,text="Race")
-        Label_Race.grid(row=3,column=0)
+        Label_Race = tk.Label(self, text="Race")
+        Label_Race.grid(row=3, column=0)
         Race_Menu = ttk.OptionMenu(self, self.tkvar_R, *Races)
-        Race_Menu.grid(row=3,column=1)
+        Race_Menu.grid(row=3, column=1)
 
-        Label_Alignment = tk.Label(self,text="Alignment")
-        Label_Alignment.grid(row=4,column=0)
+        Label_Alignment = tk.Label(self, text="Alignment")
+        Label_Alignment.grid(row=4, column=0)
         Alignment_Menu = ttk.OptionMenu(self, self.tkvar_A, *Alignments)
-        Alignment_Menu.grid(row=4,column=1)
+        Alignment_Menu.grid(row=4, column=1)
 
         Label_str = ttk.Label(self, text="Strength")
         Label_dex = ttk.Label(self, text="Dexterity")
@@ -328,8 +414,8 @@ class Page_One(tk.Frame):
         self.Entry_wis = ttk.Entry(self)
         self.Entry_char = ttk.Entry(self)
 
-        Label_str.grid(row=5,column=0)
-        self.Entry_str.grid(row=5,column=1)
+        Label_str.grid(row=5, column=0)
+        self.Entry_str.grid(row=5, column=1)
         Label_dex.grid(row=6, column=0)
         self.Entry_dex.grid(row=6, column=1)
         Label_const.grid(row=7, column=0)
@@ -341,16 +427,17 @@ class Page_One(tk.Frame):
         Label_char.grid(row=10, column=0)
         self.Entry_char.grid(row=10, column=1)
 
-        Button2 = ttk.Button(self,text="Back",command=lambda:controller.show_frame(StartPage))
-        Button2.grid(row=11,column=0)
+        Button2 = ttk.Button(self, text="Back", command=lambda: controller.show_frame(StartPage))
+        Button2.grid(row=11, column=0)
 
-        Button_new = ttk.Button(self,text="Make new Character",command=lambda :Page_One.save(self,Page_One,controller))
-        Button_new.grid(row=11,column=2)
+        Button_new = ttk.Button(self, text="Make new Character",
+                                command=lambda: Page_One.save(self, Page_One, controller))
+        Button_new.grid(row=11, column=2)
 
-        Button_roll = ttk.Button(self,text="Roll for Stats",command =lambda:Page_One.roll(self,Page_One))
-        Button_roll.grid(row=11,column=1)
+        Button_roll = ttk.Button(self, text="Roll for Stats", command=lambda: Page_One.roll(self, Page_One))
+        Button_roll.grid(row=11, column=1)
 
-    def roll(self,page):
+    def roll(self, page):
         rolls = []
         results = []
         sum = 0
@@ -362,28 +449,29 @@ class Page_One(tk.Frame):
             results.append(sum)
             rolls = []
             sum = 0
-        self.Entry_str.delete(0,100)
-        self.Entry_str.insert(0,str(results[0]))
-        self.Entry_dex.delete(0,100)
-        self.Entry_dex.insert(0,str(results[1]))
-        self.Entry_const.delete(0,100)
-        self.Entry_const.insert(0,str(results[2]))
-        self.Entry_int.delete(0,100)
-        self.Entry_int.insert(0,str(results[3]))
-        self.Entry_wis.delete(0,100)
-        self.Entry_wis.insert(0,str(results[4]))
-        self.Entry_char.delete(0,100)
-        self.Entry_char.insert(0,str(results[5]))
+        self.Entry_str.delete(0, 100)
+        self.Entry_str.insert(0, str(results[0]))
+        self.Entry_dex.delete(0, 100)
+        self.Entry_dex.insert(0, str(results[1]))
+        self.Entry_const.delete(0, 100)
+        self.Entry_const.insert(0, str(results[2]))
+        self.Entry_int.delete(0, 100)
+        self.Entry_int.insert(0, str(results[3]))
+        self.Entry_wis.delete(0, 100)
+        self.Entry_wis.insert(0, str(results[4]))
+        self.Entry_char.delete(0, 100)
+        self.Entry_char.insert(0, str(results[5]))
 
-    def save(self,page,controller):
+    def save(self, page, controller):
         '''
         Structure of File will be
         Name,Class,Race,Alignment,str,dex,const,int,wis,char
         '''
-        file = open("Data_File.txt","w")
+        file = open("Data_File.txt", "w")
         file.write(str(self.Entry_Name.get()) + ',' + str(self.tkvar_C.get()) + ',' + str(self.tkvar_R.get()) +
-                   ',' + str(self.tkvar_A.get()) + ',' + str(self.Entry_str.get())+ ',' + str(self.Entry_dex.get())
-                   + ',' + str(self.Entry_const.get())+ ',' + str(self.Entry_int.get())+ ',' + str(self.Entry_wis.get())
+                   ',' + str(self.tkvar_A.get()) + ',' + str(self.Entry_str.get()) + ',' + str(self.Entry_dex.get())
+                   + ',' + str(self.Entry_const.get()) + ',' + str(self.Entry_int.get()) + ',' + str(
+            self.Entry_wis.get())
                    + ',' + str(self.Entry_char.get()))
         char.Name = self.Entry_Name.get()
         char.clss = self.tkvar_C.get()
@@ -399,33 +487,33 @@ class Page_One(tk.Frame):
         file.close()
         controller.show_char_sheet()
 
+
 class Page_Two(tk.Frame):
-    def __init__(self,parent,controller):
-        tk.Frame.__init__(self,parent)
-        Frame1 = tk.Frame(self) #Description Frame
-        Frame2 = tk.Frame(self) #Stats Frame
-        Frame3 = tk.Frame(self) #Items Frame
-        Frame4 = tk.Frame(self) #Spells Frame
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        Frame1 = tk.Frame(self)  # Description Frame
+        Frame2 = tk.Frame(self)  # Stats Frame
+        Frame3 = tk.Frame(self)  # Items Frame
+        Frame4 = tk.Frame(self)  # Spells Frame
 
-
-        #Description of the Character
-        Label_Name = tk.Label(Frame1,text="Name").grid(row=0,column=0)
+        # Description of the Character
+        Label_Name = tk.Label(Frame1, text="Name").grid(row=0, column=0)
         self.Name_var = tk.StringVar()
         self.Name_var.set('Holder')
-        self.Name = tk.Label(Frame1,textvariable=self.Name_var).grid(row=0,column=1)
+        self.Name = tk.Label(Frame1, textvariable=self.Name_var).grid(row=0, column=1)
         self.Char_Data = []
 
-        Label_Class = tk.Label(Frame1,text="Class").grid(row=0,column=2)
+        Label_Class = tk.Label(Frame1, text="Class").grid(row=0, column=2)
         self.Class_var = tk.StringVar()
         self.Class_var.set(char.clss)
-        self.Class = tk.Label(Frame1,textvariable=self.Class_var).grid(row=0,column=3)
+        self.Class = tk.Label(Frame1, textvariable=self.Class_var).grid(row=0, column=3)
 
-        Label_Level = tk.Label(Frame1,text="Level").grid(row=0,column=4)
+        Label_Level = tk.Label(Frame1, text="Level").grid(row=0, column=4)
         self.lvl_var = tk.StringVar()
         self.lvl_var.set(char.level)
-        self.Level = tk.Label(Frame1,textvariable = self.lvl_var).grid(row=0,column=5)
-        self.lvl_up_button = tk.Button(Frame1,text="Level Up",command=lambda :Page_Two.lvlup(self))
-        self.lvl_up_button.grid(row=0,column=6)
+        self.Level = tk.Label(Frame1, textvariable=self.lvl_var).grid(row=0, column=5)
+        self.lvl_up_button = tk.Button(Frame1, text="Level Up", command=lambda: Page_Two.lvlup(self))
+        self.lvl_up_button.grid(row=0, column=6)
 
         Label_Race = tk.Label(Frame1, text="Race").grid(row=1, column=0)
         self.race_var = tk.StringVar()
@@ -442,31 +530,33 @@ class Page_Two(tk.Frame):
         self.Prof_var.set('Holder')
         self.Prof = tk.Label(Frame1, textvariable=self.Prof_var).grid(row=2, column=1)
 
-        Label_HP = tk.Label(Frame1, text="Hit Points" ).grid(row=2, column=2)
+        Label_HP = tk.Label(Frame1, text="Hit Points").grid(row=2, column=2)
         self.HP_var = tk.StringVar()
         self.HP_var.set('Holder')
         self.HP = tk.Label(Frame1, textvariable=self.HP_var).grid(row=2, column=3)
+        self.HP_change = tk.Button(Frame1,text = "+/-",command = lambda :Page_Two.edit_HP(self))
+        self.HP_change.grid(row=2, column=4)
 
-        Label_Init = tk.Label(Frame1, text="Initiative").grid(row=2, column=4)
+        Label_Init = tk.Label(Frame1, text="Initiative").grid(row=2, column=5)
         self.init_Entry = ttk.Entry(Frame1)
-        self.init_Entry.grid(row=2,column=5)
+        self.init_Entry.grid(row=2, column=6)
 
         Label_Insipr = tk.Label(Frame1, text="Inspiration").grid(row=3, column=0)
         self.Insipr_Entry = ttk.Entry(Frame1)
-        self.Insipr_Entry.grid(row=3,column=1)
+        self.Insipr_Entry.grid(row=3, column=1)
 
         Label_AC = tk.Label(Frame1, text="Armour Class").grid(row=3, column=2)
         self.AC_Entry = ttk.Entry(Frame1)
-        self.AC_Entry.grid(row=3,column=3)
+        self.AC_Entry.grid(row=3, column=3)
 
-        #Stats Code
+        # Stats Code
 
-        Label_str = tk.Label(Frame2, text="Strength").grid(row=0,column=0,pady=30)
-        Label_dex = tk.Label(Frame2, text="Dexterity").grid(row=1,column=0,pady=30)
-        Label_const = tk.Label(Frame2, text="Constitution").grid(row=2,column=0,pady=30)
-        Label_Int = tk.Label(Frame2, text="Intelligence").grid(row=3,column=0,pady=30)
-        Label_Wis = tk.Label(Frame2, text="Wisdom").grid(row=4,column=0,pady=30)
-        Label_Char = tk.Label(Frame2, text="Charisma").grid(row=5,column=0,pady=30)
+        Label_str = tk.Label(Frame2, text="Strength").grid(row=0, column=0, pady=30)
+        Label_dex = tk.Label(Frame2, text="Dexterity").grid(row=1, column=0, pady=30)
+        Label_const = tk.Label(Frame2, text="Constitution").grid(row=2, column=0, pady=30)
+        Label_Int = tk.Label(Frame2, text="Intelligence").grid(row=3, column=0, pady=30)
+        Label_Wis = tk.Label(Frame2, text="Wisdom").grid(row=4, column=0, pady=30)
+        Label_Char = tk.Label(Frame2, text="Charisma").grid(row=5, column=0, pady=30)
 
         self.str_var = tk.StringVar()
         self.dex_var = tk.StringVar()
@@ -496,24 +586,24 @@ class Page_Two(tk.Frame):
         self.wis_var_mod.set('0')
         self.char_var_mod.set('0')
 
-        Label_str_stat = tk.Label(Frame2, textvariable=self.str_var).grid(row=0,column=1)
-        Label_dex_stat = tk.Label(Frame2, textvariable=self.dex_var).grid(row=1,column=1)
-        Label_const_stat = tk.Label(Frame2, textvariable=self.const_var).grid(row=2,column=1)
-        Label_Int_stat = tk.Label(Frame2, textvariable=self.int_var).grid(row=3,column=1)
-        Label_Wis_stat = tk.Label(Frame2, textvariable=self.wis_var).grid(row=4,column=1)
-        Label_Char_stat = tk.Label(Frame2, textvariable=self.char_var).grid(row=5,column=1)
+        Label_str_stat = tk.Label(Frame2, textvariable=self.str_var).grid(row=0, column=1)
+        Label_dex_stat = tk.Label(Frame2, textvariable=self.dex_var).grid(row=1, column=1)
+        Label_const_stat = tk.Label(Frame2, textvariable=self.const_var).grid(row=2, column=1)
+        Label_Int_stat = tk.Label(Frame2, textvariable=self.int_var).grid(row=3, column=1)
+        Label_Wis_stat = tk.Label(Frame2, textvariable=self.wis_var).grid(row=4, column=1)
+        Label_Char_stat = tk.Label(Frame2, textvariable=self.char_var).grid(row=5, column=1)
 
-        Label_str_mod = tk.Label(Frame2, textvariable=self.str_var_mod).grid(row=0,column=2)
-        Label_dex_mod = tk.Label(Frame2, textvariable=self.dex_var_mod).grid(row=1,column=2)
-        Label_const_mod = tk.Label(Frame2, textvariable=self.const_var_mod).grid(row=2,column=2)
-        Label_Int_mod = tk.Label(Frame2, textvariable=self.int_var_mod).grid(row=3,column=2)
-        Label_Wis_mod = tk.Label(Frame2, textvariable=self.wis_var_mod).grid(row=4,column=2)
-        Label_Char_mod = tk.Label(Frame2, textvariable=self.char_var_mod).grid(row=5,column=2)
+        Label_str_mod = tk.Label(Frame2, textvariable=self.str_var_mod).grid(row=0, column=2)
+        Label_dex_mod = tk.Label(Frame2, textvariable=self.dex_var_mod).grid(row=1, column=2)
+        Label_const_mod = tk.Label(Frame2, textvariable=self.const_var_mod).grid(row=2, column=2)
+        Label_Int_mod = tk.Label(Frame2, textvariable=self.int_var_mod).grid(row=3, column=2)
+        Label_Wis_mod = tk.Label(Frame2, textvariable=self.wis_var_mod).grid(row=4, column=2)
+        Label_Char_mod = tk.Label(Frame2, textvariable=self.char_var_mod).grid(row=5, column=2)
 
-        #Items and weapons code
+        # Items and weapons code
 
-        Label_Wpns = tk.Label(Frame3, text="Weapons").grid(row=0,column=0)
-        Label_Amr = tk.Label(Frame3, text="Armour").grid(row=0,column=2)
+        Label_Wpns = tk.Label(Frame3, text="Weapons").grid(row=0, column=0)
+        Label_Amr = tk.Label(Frame3, text="Armour").grid(row=0, column=2)
 
         self.Weapon_Text = tk.Text(Frame3, height=20, width=20)
         self.Armour_Text = tk.Text(Frame3, height=20, width=20)
@@ -521,46 +611,63 @@ class Page_Two(tk.Frame):
         self.Weapon_Text.config(wrap=tk.WORD)
         self.Armour_Text.config(wrap=tk.WORD)
 
-        self.Weapon_Text.grid(row=1,column=0,columnspan=2)
-        self.Armour_Text.grid(row=1,column=2,columnspan=2)
+        self.Weapon_Text.grid(row=1, column=0, columnspan=2)
+        self.Armour_Text.grid(row=1, column=2, columnspan=2)
 
-        Wpn_Button = ttk.Button(Frame3, text='+',command=lambda :Page_Two.add_wpn(self))
+        Wpn_Button = ttk.Button(Frame3, text='+', command=lambda: Page_Two.add_wpn(self))
         Wpn_Button.grid(row=0, column=1)
 
-        Amr_Button = ttk.Button(Frame3, text='+',command=lambda : Page_Two.add_amr(self))
+        Amr_Button = ttk.Button(Frame3, text='+', command=lambda: Page_Two.add_amr(self))
         Amr_Button.grid(row=0, column=3)
 
-        #spell code
+        # spell code
 
-        Label_Spells = tk.Label(Frame4, text="Spells").grid(row=0,column=0)
+        Label_Spells = tk.Label(Frame4, text="Spells").grid(row=0, column=0)
         Spells_Text = tk.Text(Frame4, height=20, width=40)
-        Spells_Text.grid(row=1,column=0)
+        Spells_Text.grid(row=1, column=0)
         Spells_Text.config(wrap=tk.WORD)
 
-        spell_Button = tk.Button(Frame4, text = "+",command = lambda : Page_Two.add_spell(self) )
-        spell_Button.grid(row=0,column=1,sticky = tk.W)
+        spell_Button = tk.Button(Frame4, text="+", command=lambda: Page_Two.add_spell(self))
+        spell_Button.grid(row=0, column=1, sticky=tk.W)
         Page_Two.update(self)
-        Frame1.grid(row=0,column=0,columnspan=2)
-        Frame2.grid(row=1,column=0,rowspan=2)
-        Frame3.grid(row=1,column=1)
-        Frame4.grid(row=2,column=1)
+        Frame1.grid(row=0, column=0, columnspan=2)
+        Frame2.grid(row=1, column=0, rowspan=2)
+        Frame3.grid(row=1, column=1)
+        Frame4.grid(row=2, column=1)
 
-
-        #update all of the stats for the characyer and save the hitpoints as they are not somthing whihc is set they
-        #are calculated
+        # update all of the stats for the characyer and save the hitpoints as they are not somthing whihc is set they
+        # are calculated
         Page_Two.update_stat_mod(self)
         Page_Two.prof_update(self)
         Page_Two.HP_Set(self)
+
+    def edit_HP(self):
+        hp_edit = tk.Toplevel()
+
+
+        label = tk.Label(hp_edit,text = "Enter Damage/Healing")
+        label.grid(row=0,column=0,padx=10,pady=10)
+
+        self.Entry = tk.Entry(hp_edit)
+        self.Entry.grid(row=0,column=1,padx=10,pady=10)
+
+        confirm = tk.Button(hp_edit,text="Confirm",command = lambda :Page_Two.confirm_hp_chg(self,self.Entry.get(),hp_edit))
+        confirm.grid(row=1,column=0,columnspan=2)
+
+    def confirm_hp_chg(self,change,page):
+        char.current_hit_points = int(char.current_hit_points) + int(change)
+        self.HP_var.set(str(char.current_hit_points) + "/" + str(char.max_hit_points))
+        page.destroy()
 
     def lvlup(self):
         lvl_win = tk.Toplevel()
 
         level = char.level + 1
         Title = tk.Label(lvl_win, text="Level Up")
-        Title.grid(row=0, column=0, columnspan=2)
+        Title.grid(row=0, column=0, columnspan=11)
         msg = "Level:" + str(char.level) + " -> " + str(char.level + 1)
         message = tk.Label(lvl_win, text=msg)
-        message.grid(row=1, column=0)
+        message.grid(row=1, column=0, columnspan=11)
 
         # HP level up
         current_hp = char.max_hit_points
@@ -571,59 +678,92 @@ class Page_Two(tk.Frame):
 
         hp_msg = "Hit Points:" + str(current_hp) + " -> " + str(new_hp)
         hp_message = tk.Label(lvl_win, text=hp_msg)
-        hp_message.grid(row=2, column=0)
+        hp_message.grid(row=2, column=0, columnspan=11)
 
         lvlup_desc = tk.Text(lvl_win, height=5, width=30)
-        lvlup_desc.grid(row=3, column=0)
+        lvlup_desc.grid(row=3, column=0, columnspan=11)
         lvlup_desc.insert(tk.INSERT, str(lists.level_up_descp[int(level) - 1][self.class_switch(cls)]))
 
-        #if need to have a
+        if (level == 4 or level == 8 or level == 12 or level == 16 or level == 19):
+            str_label = tk.Label(lvl_win, text="Str")
+            str_label.grid(row=4, column=0)
+            dex_label = tk.Label(lvl_win, text="Dex")
+            dex_label.grid(row=4, column=2)
+            const_label = tk.Label(lvl_win, text="Const")
+            const_label.grid(row=4, column=4)
+            wis_label = tk.Label(lvl_win, text="Wis")
+            wis_label.grid(row=4, column=6)
+            int_label = tk.Label(lvl_win, text="Int")
+            int_label.grid(row=4, column=8)
+            char_label = tk.Label(lvl_win, text="Char")
+            char_label.grid(row=4, column=10)
 
-        if(level == 4):
+            self.str_spinbox = tk.Spinbox(lvl_win, from_=0, to=20, width=0)
+            self.str_spinbox.grid(row=4, column=1)
+            self.dex_spinbox = tk.Spinbox(lvl_win, from_=0, to=20, width=0)
+            self.dex_spinbox.grid(row=4, column=3)
+            self.const_spinbox = tk.Spinbox(lvl_win, from_=0, to=20, width=0)
+            self.const_spinbox.grid(row=4, column=5)
+            self.wis_spinbox = tk.Spinbox(lvl_win, from_=0, to=20, width=0)
+            self.wis_spinbox.grid(row=4, column=7)
+            self.int_spinbox = tk.Spinbox(lvl_win, from_=0, to=20, width=0)
+            self.int_spinbox.grid(row=4, column=9)
+            self.char_spinbox = tk.Spinbox(lvl_win, from_=0, to=20, width=0)
+            self.char_spinbox.grid(row=4, column=11)
 
+            #get the inital values to compare to the new ones and add them up as somthing to compare it too
 
+            self.str_spinbox.delete(0, "end")
+            self.str_spinbox.insert(0, int(char.str))
+            self.dex_spinbox.delete(0, "end")
+            self.dex_spinbox.insert(0, int(char.dex))
+            self.const_spinbox.delete(0, "end")
+            self.const_spinbox.insert(0, int(char.const))
+            self.wis_spinbox.delete(0, "end")
+            self.wis_spinbox.insert(0, int(char.wis))
+            self.int_spinbox.delete(0, "end")
+            self.int_spinbox.insert(0, int(char.int))
+            self.char_spinbox.delete(0, "end")
+            self.char_spinbox.insert(0, int(char.char))
 
-
-        conf = tk.Button(lvl_win, text="Confirm", command=lambda :lvl_win.destroy())
-        conf.grid(row=4, column=0)
+        conf = tk.Button(lvl_win, text="Confirm", command=lambda: lvl_win.destroy())
+        conf.grid(row=5, column=0, columnspan=11)
 
         char.level = level
         char.max_hit_points = new_hp
         char.current_hit_points = new_hp
 
         self.level_up_update()
-        print(self.HP_var.get())
 
-    def class_switch(self,cls):
-        #method which returns the location of a specific class within the level_desp list
-        class_switcher = {'Barbarian':0 ,'Bard':1,'Cleric':2,'Druid':3,'Fighter':4,'Monk':5,'Paladin':6,'Ranger':7,
-            'Rouge':8,'Sorcerer':9,'Warlock':10,'Wizard':11}
-        return class_switcher.get(cls,"Nothing")
+    def class_switch(self, cls):
+        # method which returns the location of a specific class within the level_desp list
+        class_switcher = {'Barbarian': 0, 'Bard': 1, 'Cleric': 2, 'Druid': 3, 'Fighter': 4, 'Monk': 5, 'Paladin': 6,
+                          'Ranger': 7,
+                          'Rouge': 8, 'Sorcerer': 9, 'Warlock': 10, 'Wizard': 11}
+        return class_switcher.get(cls, "Nothing")
 
     def HP_Set(self):
         hp_base = Page_Two.hp_switch(self.Class_var.get())
         max = hp_base + int(self.const_var_mod.get())
         self.HP_var.set(str(max) + "/" + str(max))
-        char.max_hit_points=max
-        char.current_hit_points=max
+        char.max_hit_points = max
+        char.current_hit_points = max
 
     def hp_switch(player_class):
         switcher = {'Ranger': 10, 'Barbarian': 12, 'Paladin': 10, 'Bard': 8, 'Cleric': 8
-            ,'Druid': 8, 'Fighter': 10, 'Monk': 8, 'Rouge': 8, 'Sorcerer': 6,'Warlock': 8, 'Wizard': 6}
+            , 'Druid': 8, 'Fighter': 10, 'Monk': 8, 'Rouge': 8, 'Sorcerer': 6, 'Warlock': 8, 'Wizard': 6}
         return switcher.get(player_class, "nothing")
-
 
     def prof_update(self):
         self.Prof_var.set(int((float(self.lvl_var.get()) - 1) / 4) + 2)
 
     def update_stat_mod(self):
-        self.str_var_mod.set(int((int(self.str_var.get()) - 10 )/2))
-        self.dex_var_mod.set(int((int(self.dex_var.get()) - 10 )/2))
-        self.const_var_mod.set(int((int(self.const_var.get()) - 10 )/2))
-        self.wis_var_mod.set(int((int(self.wis_var.get()) - 10 )/2))
-        self.int_var_mod.set(int((int(self.int_var.get()) - 10 )/2))
-        self.char_var_mod.set(int((int(self.char_var.get()) - 10 )/2))
-
+        self.str_var_mod.set(int((int(self.str_var.get()) - 10) / 2))
+        self.dex_var_mod.set(int((int(self.dex_var.get()) - 10) / 2))
+        self.const_var_mod.set(int((int(self.const_var.get()) - 10) / 2))
+        self.wis_var_mod.set(int((int(self.wis_var.get()) - 10) / 2))
+        self.int_var_mod.set(int((int(self.int_var.get()) - 10) / 2))
+        self.char_var_mod.set(int((int(self.char_var.get()) - 10) / 2))
 
     def add_wpn(self):
         # create child window
@@ -632,15 +772,14 @@ class Page_Two(tk.Frame):
         self.search_var.trace("w", self.update_wpn_list)
         self.entry = tk.Entry(win, textvariable=self.search_var, width=13)
         self.lbox = tk.Listbox(win, width=45, height=15)
-        self.Search_Label = tk.Label(win,text="Enter Name of Weapon")
+        self.Search_Label = tk.Label(win, text="Enter Name of Weapon")
         self.lbox.bind("<Double-Button-1>", self.OnDouble)
 
         self.entry.grid(row=0, column=1, padx=10, pady=3)
-        self.Search_Label.grid(row=0,column=0,padx=10,pady=3)
-        self.lbox.grid(row=1, column=0, padx=10, pady=3,columnspan =2)
+        self.Search_Label.grid(row=0, column=0, padx=10, pady=3)
+        self.lbox.grid(row=1, column=0, padx=10, pady=3, columnspan=2)
 
         self.update_wpn_list()
-
 
     def add_amr(self):
         # create child window
@@ -649,12 +788,12 @@ class Page_Two(tk.Frame):
         self.search_var.trace("w", self.update_amr_list)
         self.entry = tk.Entry(win, textvariable=self.search_var, width=13)
         self.lbox = tk.Listbox(win, width=45, height=15)
-        self.Search_Label = tk.Label(win,text="Enter Name of Armour")
+        self.Search_Label = tk.Label(win, text="Enter Name of Armour")
         self.lbox.bind("<Double-Button-1>", self.OnDouble_amr)
 
         self.entry.grid(row=0, column=1, padx=10, pady=3)
-        self.Search_Label.grid(row=0,column=0,padx=10,pady=3)
-        self.lbox.grid(row=1, column=0, padx=10, pady=3,columnspan =2)
+        self.Search_Label.grid(row=0, column=0, padx=10, pady=3)
+        self.lbox.grid(row=1, column=0, padx=10, pady=3, columnspan=2)
 
         self.update_amr_list()
 
@@ -665,12 +804,12 @@ class Page_Two(tk.Frame):
         self.search_var.trace("w", self.update_amr_list)
         self.entry = tk.Entry(win, textvariable=self.search_var, width=13)
         self.lbox = tk.Listbox(win, width=45, height=15)
-        self.Search_Label = tk.Label(win,text="Enter Name of Spell")
+        self.Search_Label = tk.Label(win, text="Enter Name of Spell")
         self.lbox.bind("<Double-Button-1>", self.OnDouble_amr)
 
         self.entry.grid(row=0, column=1, padx=10, pady=3)
-        self.Search_Label.grid(row=0,column=0,padx=10,pady=3)
-        self.lbox.grid(row=1, column=0, padx=10, pady=3,columnspan =2)
+        self.Search_Label.grid(row=0, column=0, padx=10, pady=3)
+        self.lbox.grid(row=1, column=0, padx=10, pady=3, columnspan=2)
 
     def update_wpn_list(self, *args):
         search_term = self.search_var.get()
@@ -679,17 +818,17 @@ class Page_Two(tk.Frame):
             data = json.load(f)
         with open(lists.Path_to_Martial_Ranged_Weapons, encoding='utf-8') as f1:
             data1 = json.load(f1)
-        with open(lists.Path_to_Firearms,encoding='utf-8') as f2:
+        with open(lists.Path_to_Firearms, encoding='utf-8') as f2:
             data2 = json.load(f2)
-        with open(lists.Path_to_Simple_Melee_Weapons,encoding='utf-8') as f3:
+        with open(lists.Path_to_Simple_Melee_Weapons, encoding='utf-8') as f3:
             data3 = json.load(f3)
-        with open(lists.Path_to_Simple_Ranged_Weapons,encoding='utf-8') as f4:
+        with open(lists.Path_to_Simple_Ranged_Weapons, encoding='utf-8') as f4:
             data4 = json.load(f4)
         self.weapons = []
-        self.cost=[]
-        self.damage=[]
-        self.weight=[]
-        self.properties=[]
+        self.cost = []
+        self.damage = []
+        self.weight = []
+        self.properties = []
 
         for weapon in data['Melee_Weapons']:
             self.weapons.append(weapon['Name'])
@@ -729,37 +868,37 @@ class Page_Two(tk.Frame):
         self.lbox.delete(0, tk.END)
 
         for item in self.weapons:
-                if search_term.lower() in item.lower():
-                    self.lbox.insert(tk.END, item)
+            if search_term.lower() in item.lower():
+                self.lbox.insert(tk.END, item)
 
     def update_amr_list(self, *args):
         search_term = self.search_var.get()
 
-        self.armour = ['Padded','Leather','Studded Leather','Hide','Chain Shirt'
-                       ,'Scale Mail','Breastplate','Half Plate','Ring Mail',
-                       'Chain Mail','Splint','Plate','Sheild']
+        self.armour = ['Padded', 'Leather', 'Studded Leather', 'Hide', 'Chain Shirt'
+            , 'Scale Mail', 'Breastplate', 'Half Plate', 'Ring Mail',
+                       'Chain Mail', 'Splint', 'Plate', 'Sheild']
 
         self.lbox.delete(0, tk.END)
 
         for item in self.armour:
-                if search_term.lower() in item.lower():
-                    self.lbox.insert(tk.END, item)
+            if search_term.lower() in item.lower():
+                self.lbox.insert(tk.END, item)
 
     def OnDouble(self, event):
         widget = event.widget
-        selection=widget.curselection()
+        selection = widget.curselection()
         value = widget.get(selection[0])
-        #self.select_var.set(value)
+        # self.select_var.set(value)
         location = self.weapons.index(value)
-        self.Weapon_Text.insert('1.0',self.weapons[location] + " " + self.damage[location] + "\n")
+        self.Weapon_Text.insert('1.0', self.weapons[location] + " " + self.damage[location] + "\n")
 
     def OnDouble_amr(self, event):
         widget = event.widget
-        selection=widget.curselection()
+        selection = widget.curselection()
         value = widget.get(selection[0])
-        #self.select_var.set(value)
+        # self.select_var.set(value)
         location = self.armour.index(value)
-        self.Armour_Text.insert('1.0',self.armour[location] + "\n")
+        self.Armour_Text.insert('1.0', self.armour[location] + "\n")
 
     def update(self):
         self.Name_var.set(char.Name)
@@ -783,6 +922,7 @@ class Page_Two(tk.Frame):
         self.char_var.set(char.char)
         self.HP_var.set(str(char.max_hit_points) + "/" + str(char.max_hit_points))
         self.lvl_var.set(char.level)
+
 
 
 app = dnd_char_Sheet()
