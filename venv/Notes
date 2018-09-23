@@ -1,0 +1,20 @@
+Notes for DnD char sheet
+
+Level Up functionality
+Hit Points editor
+Magic item box - perhaps on the other side of the box
+scrolling of the whole thing
+other sode of the char sheet
+Dice UI
+weapons Database
+Tkinter colour scheme
+Spells by class and level
+expandable window
+add a section for notes about the character ( ie the abilities and stuff)
+add class descriptions to the inputting of class data page- in file class_descriptions.json
+
+
+maybe condense the code within init_list so that all of the lists are within one list
+
+maybe best to make a class called character which holds all of the data about the character which can then be changed,
+Which would aviod the need for a file write. but then the file write is also a good idea for the saving part of the program.
