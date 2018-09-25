@@ -1,13 +1,13 @@
 import json
 import Char
 
-Path_to_Spells = 'C:/Users/nye42/PycharmProjects/dnd/dnd-spells-master/spells.json'
-Path_to_Martial_Melee_Weapons = 'C:/Users/nye42/PycharmProjects/dnd/dnd5-weapons-json-master/json/martialMeleeWeapons.json'
-Path_to_Martial_Ranged_Weapons = 'C:/Users/nye42/PycharmProjects/dnd/dnd5-weapons-json-master/json/martialRangedWeapons.json'
-Path_to_Firearms = 'C:/Users/nye42/PycharmProjects/dnd/dnd5-weapons-json-master/json/firearms.json'
-Path_to_Simple_Melee_Weapons = 'C:/Users/nye42/PycharmProjects/dnd/dnd5-weapons-json-master/json/simpleMeleeWeapons.json'
-Path_to_Simple_Ranged_Weapons = 'C:/Users/nye42/PycharmProjects/dnd/dnd5-weapons-json-master/json/simpleRangedWeapons.json'
-Path_to_Levels = 'C:/Users/nye42/PycharmProjects/dnd/Levels.json'
+Path_to_Spells = 'dnd-spells-master/spells.json'
+Path_to_Martial_Melee_Weapons = 'dnd5-weapons-json-master/json/martialMeleeWeapons.json'
+Path_to_Martial_Ranged_Weapons = 'dnd5-weapons-json-master/json/martialRangedWeapons.json'
+Path_to_Firearms = 'dnd5-weapons-json-master/json/firearms.json'
+Path_to_Simple_Melee_Weapons = 'dnd5-weapons-json-master/json/simpleMeleeWeapons.json'
+Path_to_Simple_Ranged_Weapons = 'dnd5-weapons-json-master/json/simpleRangedWeapons.json'
+Path_to_Levels = 'Levels.json'
 with open(Path_to_Spells, encoding='utf-8') as file:
     spell_data = json.load(file)
 with open(Path_to_Levels, encoding='utf-8') as level_file:

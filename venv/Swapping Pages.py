@@ -132,77 +132,99 @@ class Dice_Page(tk.Frame):
         self.d4_number = tk.Entry(die_win, width=5)
         self.d4_number.insert(0, '0')
         self.d4_number.grid(row=1, column=2, pady=10)
-        self.d4_result = tk.Entry(die_win, width=5)
+        self.d4_result = tk.Entry(die_win, width=15)
         self.d4_result.grid(row=1, column=4, padx=10)
         d4_roll = tk.Button(die_win, text="Roll",
                             command=lambda: Dice_Page.roll(self, 4, self.d4_result, self.d4_number.get()))
         d4_roll.grid(row=1, column=3, padx=10)
+        self.img4 = ImageTk.PhotoImage(Image.open('Dice_pics\d4b.jpg'))
+        panel4 = tk.Label(die_win,image=self.img4)
+        panel4.grid(row=1,column=0)
+
 
         d6 = tk.Label(die_win, text="d6")
         d6.grid(row=2, column=1)
         self.d6_number = tk.Entry(die_win, width=5)
         self.d6_number.insert(0, '0')
         self.d6_number.grid(row=2, column=2, pady=10)
-        self.d6_result = tk.Entry(die_win, width=5)
+        self.d6_result = tk.Entry(die_win, width=15)
         self.d6_result.grid(row=2, column=4, padx=10)
         d6_roll = tk.Button(die_win, text="Roll",
                             command=lambda: Dice_Page.roll(self, 6, self.d6_result, self.d6_number.get()))
         d6_roll.grid(row=2, column=3, padx=10)
+        self.img6 = ImageTk.PhotoImage(Image.open('Dice_pics\d6b.jpg'))
+        panel6 = tk.Label(die_win,image=self.img6)
+        panel6.grid(row=2,column=0)
         
         d8 = tk.Label(die_win, text="d8")
         d8.grid(row=3, column=1)
         self.d8_number = tk.Entry(die_win, width=5)
         self.d8_number.insert(0, '0')
         self.d8_number.grid(row=3, column=2, pady=10)
-        self.d8_result = tk.Entry(die_win, width=5)
+        self.d8_result = tk.Entry(die_win, width=15)
         self.d8_result.grid(row=3, column=4, padx=10)
         d8_roll = tk.Button(die_win, text="Roll",
                             command=lambda: Dice_Page.roll(self, 8, self.d8_result, self.d8_number.get()))
         d8_roll.grid(row=3, column=3, padx=10)
+        self.img8 = ImageTk.PhotoImage(Image.open('Dice_pics\d8b.jpg'))
+        panel8 = tk.Label(die_win,image=self.img8)
+        panel8.grid(row=3,column=0)
         
         d10 = tk.Label(die_win, text="d10")
         d10.grid(row=4, column=1)
         self.d10_number = tk.Entry(die_win, width=5)
         self.d10_number.insert(0, '0')
         self.d10_number.grid(row=4, column=2, pady=10)
-        self.d10_result = tk.Entry(die_win, width=5)
+        self.d10_result = tk.Entry(die_win, width=15)
         self.d10_result.grid(row=4, column=4, padx=10)
         d10_roll = tk.Button(die_win, text="Roll",
                             command=lambda: Dice_Page.roll(self, 10, self.d10_result, self.d10_number.get()))
         d10_roll.grid(row=4, column=3, padx=10)
+        self.img10 = ImageTk.PhotoImage(Image.open('Dice_pics\d10b.jpg'))
+        panel10 = tk.Label(die_win,image=self.img10)
+        panel10.grid(row=4,column=0)
         
         d12 = tk.Label(die_win, text="d12")
         d12.grid(row=5, column=1)
         self.d12_number = tk.Entry(die_win, width=5)
         self.d12_number.insert(0, '0')
         self.d12_number.grid(row=5, column=2, pady=10)
-        self.d12_result = tk.Entry(die_win, width=5)
+        self.d12_result = tk.Entry(die_win, width=15)
         self.d12_result.grid(row=5, column=4, padx=10)
         d12_roll = tk.Button(die_win, text="Roll",
                             command=lambda: Dice_Page.roll(self, 12, self.d12_result, self.d12_number.get()))
         d12_roll.grid(row=5, column=3, padx=10)
+        self.img12 = ImageTk.PhotoImage(Image.open('Dice_pics\d12b.jpg'))
+        panel12 = tk.Label(die_win,image=self.img12)
+        panel12.grid(row=5,column=0)
         
         d20 = tk.Label(die_win, text="d20")
         d20.grid(row=6, column=1)
         self.d20_number = tk.Entry(die_win, width=5)
         self.d20_number.insert(0, '0')
         self.d20_number.grid(row=6, column=2, pady=10)
-        self.d20_result = tk.Entry(die_win, width=5)
+        self.d20_result = tk.Entry(die_win, width=15)
         self.d20_result.grid(row=6, column=4, padx=10)
         d20_roll = tk.Button(die_win, text="Roll",
                             command=lambda: Dice_Page.roll(self, 20, self.d20_result, self.d20_number.get()))
         d20_roll.grid(row=6, column=3, padx=10)
+        self.img20 = ImageTk.PhotoImage(Image.open('Dice_pics\d20b.jpg'))
+        panel20 = tk.Label(die_win,image=self.img20)
+        panel20.grid(row=6,column=0)
         
         d100 = tk.Label(die_win, text="d100")
         d100.grid(row=7, column=1)
         self.d100_number = tk.Entry(die_win, width=5)
         self.d100_number.insert(0, '0')
         self.d100_number.grid(row=7, column=2, pady=10)
-        self.d100_result = tk.Entry(die_win, width=5)
+        self.d100_result = tk.Entry(die_win, width=15)
         self.d100_result.grid(row=7, column=4, padx=10)
         d100_roll = tk.Button(die_win, text="Roll",
                             command=lambda: Dice_Page.roll(self, 100, self.d100_result, self.d100_number.get()))
         d100_roll.grid(row=7, column=3, padx=10)
+        self.img100 = ImageTk.PhotoImage(Image.open('Dice_pics\d100b.jpg'))
+        panel100 = tk.Label(die_win,image=self.img100)
+        panel100.grid(row=7,column=0)
 
 
     def roll(self,dice,box,number):
@@ -385,7 +407,7 @@ class Page_One(tk.Frame):
         Label_Class.grid(row=2, column=0)
         Class_Menu = ttk.OptionMenu(self, self.tkvar_C, *Class)
         Class_Menu.grid(row=2, column=1)
-        self.img=ImageTk.PhotoImage(Image.open("C:/Users/Nye/PycharmProjects/Dnd_charsheet/Class_icons/Ranger.jpg"))
+        self.img=ImageTk.PhotoImage(Image.open("Class_icons/Ranger.jpg"))
         Label_Class_Img = ttk.Label(self,image = self.img)
         Label_Class_Img.image = self.img
         Label_Class_Img.grid(row=2,column=2)
@@ -659,10 +681,27 @@ class Page_Two(tk.Frame):
         self.HP_var.set(str(char.current_hit_points) + "/" + str(char.max_hit_points))
         page.destroy()
 
+    def lvl_up_confirm(self,page):
+
+        #stats update
+        if (self.level == 4 or self.level == 8 or self.level == 12 or self.level == 16 or self.level == 19):
+            char.str = self.str_spinbox.get()
+            char.dex = self.dex_spinbox.get()
+            char.const = self.const_spinbox.get()
+            char.wis = self.wis_spinbox.get()
+            char.int = self.int_spinbox.get()
+            char.char = self.char_spinbox.get()
+
+        char.level = self.level
+        char.max_hit_points = self.new_hp
+        char.current_hit_points = self.new_hp
+        self.level_up_update()
+        page.destroy()
+
     def lvlup(self):
         lvl_win = tk.Toplevel()
 
-        level = char.level + 1
+        self.level = char.level + 1
         Title = tk.Label(lvl_win, text="Level Up")
         Title.grid(row=0, column=0, columnspan=11)
         msg = "Level:" + str(char.level) + " -> " + str(char.level + 1)
@@ -674,17 +713,17 @@ class Page_Two(tk.Frame):
         const_mod = int((int(char.const) - 10) / 2)
         cls = char.clss
         roll = rand.randint(1, Page_Two.hp_switch(cls))
-        new_hp = current_hp + const_mod + roll
+        self.new_hp = current_hp + const_mod + roll
 
-        hp_msg = "Hit Points:" + str(current_hp) + " -> " + str(new_hp)
+        hp_msg = "Hit Points:" + str(current_hp) + " -> " + str(self.new_hp)
         hp_message = tk.Label(lvl_win, text=hp_msg)
         hp_message.grid(row=2, column=0, columnspan=11)
 
         lvlup_desc = tk.Text(lvl_win, height=5, width=30)
         lvlup_desc.grid(row=3, column=0, columnspan=11)
-        lvlup_desc.insert(tk.INSERT, str(lists.level_up_descp[int(level) - 1][self.class_switch(cls)]))
+        lvlup_desc.insert(tk.INSERT, str(lists.level_up_descp[int(self.level) - 1][self.class_switch(cls)]))
 
-        if (level == 4 or level == 8 or level == 12 or level == 16 or level == 19):
+        if (self.level == 4 or self.level == 8 or self.level == 12 or self.level == 16 or self.level == 19):
             str_label = tk.Label(lvl_win, text="Str")
             str_label.grid(row=4, column=0)
             dex_label = tk.Label(lvl_win, text="Dex")
@@ -726,14 +765,8 @@ class Page_Two(tk.Frame):
             self.char_spinbox.delete(0, "end")
             self.char_spinbox.insert(0, int(char.char))
 
-        conf = tk.Button(lvl_win, text="Confirm", command=lambda: lvl_win.destroy())
+        conf = tk.Button(lvl_win, text="Confirm", command=lambda: Page_Two.lvl_up_confirm(self,lvl_win))
         conf.grid(row=5, column=0, columnspan=11)
-
-        char.level = level
-        char.max_hit_points = new_hp
-        char.current_hit_points = new_hp
-
-        self.level_up_update()
 
     def class_switch(self, cls):
         # method which returns the location of a specific class within the level_desp list
@@ -922,6 +955,8 @@ class Page_Two(tk.Frame):
         self.char_var.set(char.char)
         self.HP_var.set(str(char.max_hit_points) + "/" + str(char.max_hit_points))
         self.lvl_var.set(char.level)
+
+        self.update_stat_mod()
 
 
 

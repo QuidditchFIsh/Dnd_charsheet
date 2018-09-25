@@ -1,1 +1,1 @@
-hgh,Ranger,DragonBorn,Chaotic neutral,11,14,12,14,9,11
+,Ranger,Human,Chaotic evil,13,12,13,14,11,13
